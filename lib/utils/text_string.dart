@@ -1,0 +1,1 @@
+const String bringing = 'Bringing Your Ideas To Life Through UI Design';
