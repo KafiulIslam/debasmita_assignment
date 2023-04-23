@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 const ass = Color(0xFF1D1B1E);
 const buttonColor = Color(0xFF8326FD);
+const yellow = Colors.amber;
+const green = Color(0xFF00C399);
+const red = Color(0xFFFF6D7A);
 
 const backColor = Color(0xFFFCFCFC);
-const red = Color(0xFFD40008);
 final redLight = red.withOpacity(0.2);
 
 const primaryColor = Color(0xFF002BA5);
@@ -23,9 +25,7 @@ const grey = Color(0xFF7D8DA6);
 const darkGrey = Color(0xFF364A61);
 const borderColor = Color(0xFFDEE3ED);
 const rowBarColor = Color(0xFFFBFCFE);
-const green = Color(0xFF52C16A);
 final greenFade = green.withOpacity(0.3);
-const yellow = Color(0xFFFDCD49);
 const yellowFade = Color(0xFFFFF5DA);
 const redFade = Color(0xFFFFE7E4);
 
