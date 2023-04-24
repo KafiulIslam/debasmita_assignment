@@ -3,6 +3,7 @@ import 'package:debasmita_assignment/utils/image_path.dart';
 import 'package:debasmita_assignment/utils/spacer.dart';
 import 'package:debasmita_assignment/utils/text_string.dart';
 import 'package:debasmita_assignment/widgets/components/custom_card.dart';
+import 'package:debasmita_assignment/widgets/components/portfolio_card.dart';
 import 'package:debasmita_assignment/widgets/components/profile_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -17,7 +18,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<ExperienceCard> experienceList = [
+  final List<ExperienceCard> experienceList = const [
     ExperienceCard(color: green, number: '2+', title: 'Your Experience'),
     ExperienceCard(
         color: yellow,
@@ -32,6 +33,15 @@ class _HomeScreenState extends State<HomeScreen> {
         title: 'Handled Project',
         titleColor: black),
     ExperienceCard(color: red, number: '40+', title: 'Clients'),
+  ];
+
+  final List<PortfolioCard> portfolioList = const [
+    PortfolioCard(imagePath: webImage, isFirstPortfolio: true),
+    PortfolioCard(imagePath: webImage),
+    PortfolioCard(imagePath: webImage),
+    PortfolioCard(imagePath: webImage),
+    PortfolioCard(imagePath: webImage),
+    PortfolioCard(imagePath: webImage),
   ];
 
   @override
@@ -70,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             contentPadding: EdgeInsets.all(24.0),
                             hintText: 'BimGraph',
                             hintStyle: sixteenWhiteStyle,
-                            suffixIcon: Icon(
+                            suffixIcon: const Icon(
                               Icons.menu,
                               color: white,
                             ),
@@ -79,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ),
-                       primaryVSpacer,
+                        primaryVSpacer,
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -97,7 +107,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             primaryHSpacer,
                             Expanded(
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   CustomCard(
                                     width: double.infinity,
@@ -114,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             style: fourteenWhiteStyle.copyWith(
                                                 color: Colors.white70),
                                           ),
-                                          Text(
+                                          const Text(
                                             'Kafiul Islam',
                                             style: sixteenWhiteStyle,
                                           ),
@@ -128,24 +139,27 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 16.0, vertical: 24.0),
-                                      child: Column(children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              'Based in:',
-                                              style: fourteenWhiteStyle.copyWith(
-                                                  color: Colors.white70),
-                                            ),
-                                            Text(
-                                              'Bogura, Bangladesh',
-                                              style: sixteenWhiteStyle,
-                                            ),
-                                          ],
-                                        ),
-                                        Image.asset(location),
-                                      ],),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                'Based in:',
+                                                style:
+                                                    fourteenWhiteStyle.copyWith(
+                                                        color: Colors.white70),
+                                              ),
+                                              const Text(
+                                                'Bogura, Bangladesh',
+                                                style: sixteenWhiteStyle,
+                                              ),
+                                            ],
+                                          ),
+                                          Image.asset(location),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                   CustomCard(
@@ -156,12 +170,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                           horizontal: 16.0, vertical: 16.0),
                                       child: Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                        children: [
-                                         ProfileIcon( radius: 25, icon: FontAwesomeIcons.linkedin, color: Colors.blue,),
-                                          ProfileIcon( radius: 25, icon: FontAwesomeIcons.twitter),
-                                          ProfileIcon( radius: 25, icon: FontAwesomeIcons.instagram),
-                                          ProfileIcon( radius: 25, icon: FontAwesomeIcons.facebook),
+                                            MainAxisAlignment.spaceBetween,
+                                        children: const [
+                                          ProfileIcon(
+                                            radius: 25,
+                                            icon: FontAwesomeIcons.linkedin,
+                                            color: Colors.blue,
+                                          ),
+                                          ProfileIcon(
+                                              radius: 25,
+                                              icon: FontAwesomeIcons.twitter),
+                                          ProfileIcon(
+                                              radius: 25,
+                                              icon: FontAwesomeIcons.instagram),
+                                          ProfileIcon(
+                                              radius: 25,
+                                              icon: FontAwesomeIcons.facebook),
                                         ],
                                       ),
                                     ),
@@ -174,6 +198,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   )
+                ],
+              ),
+              primaryVSpacer,
+              Row(
+                children: [
+                  _portfolio(screenWidth),
+                  primaryHSpacer,
+                  _about(screenWidth),
                 ],
               )
             ],
@@ -241,6 +273,83 @@ class _HomeScreenState extends State<HomeScreen> {
           return experienceList[index];
         },
       ),
+    );
+  }
+
+  CustomCard _portfolio(double width) {
+    return CustomCard(
+        width: width / 1.8,
+        cardColor: ass,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'UI Portfolio',
+                    style: header2.copyWith(color: white),
+                  ),
+                  Text(
+                    'See All',
+                    style: header2.copyWith(color: Colors.white70),
+                  ),
+                ],
+              ),
+              primaryVSpacer,
+              Container(
+                height: 250,
+                width: width / 1.8,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: portfolioList.length,
+                  separatorBuilder: (BuildContext context, int index) =>
+                      primaryHSpacer,
+                  itemBuilder: (BuildContext context, int index) {
+                    return portfolioList[index];
+                  },
+                ),
+              )
+            ],
+          ),
+        ));
+  }
+
+  Expanded _about(double width) {
+    return Expanded(
+      child: CustomCard(
+          width: width / 2.5,
+          cardColor: ass,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'About',
+                      style: header2.copyWith(color: white),
+                    ),
+                    Text(
+                      'Resume',
+                      style: header2.copyWith(color: Colors.white70),
+                    ),
+                  ],
+                ),
+                primaryVSpacer,
+                Container(
+                  height: 250,
+                  width: width / 1.8,
+                  child: Text(
+                    bio,
+                    style: sixteenDeepAssStyle.copyWith(color: Colors.white70),
+                  ),
+                )
+              ],
+            ),
+          )),
     );
   }
 }
