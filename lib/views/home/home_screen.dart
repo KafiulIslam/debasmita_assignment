@@ -2,6 +2,7 @@ import 'package:debasmita_assignment/utils/color.dart';
 import 'package:debasmita_assignment/utils/image_path.dart';
 import 'package:debasmita_assignment/utils/spacer.dart';
 import 'package:debasmita_assignment/utils/text_string.dart';
+import 'package:debasmita_assignment/views/home/home_mobile.dart';
 import 'package:debasmita_assignment/views/home/home_web.dart';
 import 'package:debasmita_assignment/widgets/components/custom_card.dart';
 import 'package:debasmita_assignment/widgets/components/portfolio_card.dart';
@@ -56,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (BuildContext context, BoxConstraints constraints) {
             if(constraints.maxWidth < 480){
               ///mobile
-              return HomeWeb();
+              return const HomeMobile();
             }else if (constraints.maxWidth < 800){
               /// pad
               return const HomePad();

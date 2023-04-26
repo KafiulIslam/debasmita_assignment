@@ -10,14 +10,14 @@ import '../../widgets/components/experience_card.dart';
 import '../../widgets/components/portfolio_card.dart';
 import '../../widgets/components/profile_icon.dart';
 
-class HomePad extends StatefulWidget {
-  const HomePad({Key? key}) : super(key: key);
+class HomeMobile extends StatefulWidget {
+  const HomeMobile({Key? key}) : super(key: key);
 
   @override
-  State<HomePad> createState() => _HomePadState();
+  State<HomeMobile> createState() => _HomeMobileState();
 }
 
-class _HomePadState extends State<HomePad> {
+class _HomeMobileState extends State<HomeMobile> {
 
   final List<ExperienceCard> experienceList = [
     ExperienceCard(color: green, number: '2+', title: 'Your Experience'),
@@ -64,18 +64,17 @@ class _HomePadState extends State<HomePad> {
             const SizedBox(
               height: 32.0,
             ),
-           _profile(screenWidth),
-              const SizedBox(
+            _profile(screenWidth),
+            const SizedBox(
               height: 32.0,
             ),
             Text('Portfolio', style: header2.copyWith(color: white),),
-            Row(
-              children: [
-                _portfolio(screenWidth),
-                primaryHSpacer,
-                _about(screenWidth),
-              ],
-            )
+            _portfolio(screenWidth),
+            const SizedBox(
+              height: 32.0,
+            ),
+            Text('Portfolio', style: header2.copyWith(color: white),),
+            _about(screenWidth),
           ],
         ),
       ),
@@ -115,7 +114,7 @@ class _HomePadState extends State<HomePad> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Text(bringing, style: header1.copyWith(fontSize: 70)),
+            Text(bringing, style: header1),
             const SizedBox(
               height: 16.0,
             ),
@@ -147,12 +146,12 @@ class _HomePadState extends State<HomePad> {
           ),
         ),
       ],)
-      ;
+    ;
   }
 
   CustomCard _portfolio(double width) {
     return CustomCard(
-        width: width / 1.8,
+        width: width,
         cardColor: ass,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -174,7 +173,7 @@ class _HomePadState extends State<HomePad> {
               primaryVSpacer,
               Container(
                 height: 250,
-                width: width / 1.8,
+                width: width,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemCount: portfolioList.length,
@@ -190,74 +189,71 @@ class _HomePadState extends State<HomePad> {
         ));
   }
 
-  Expanded _about(double width) {
-    return Expanded(
-      child: CustomCard(
-          width: width / 2.5,
-          cardColor: ass,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'About',
-                      style: header2.copyWith(color: white),
-                    ),
-                    Text(
-                      'Resume',
-                      style: header2.copyWith(color: Colors.white70),
-                    ),
-                  ],
-                ),
-                primaryVSpacer,
-                Container(
-                  height: 250,
-                  width: width / 1.8,
-                  child: Text(
-                    bio,
-                    style: sixteenDeepAssStyle.copyWith(color: Colors.white70),
+  CustomCard _about(double width) {
+    return CustomCard(
+        width: width,
+        cardColor: ass,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'About',
+                    style: header2.copyWith(color: white),
                   ),
-                )
-              ],
-            ),
-          )),
-    );
+                  Text(
+                    'Resume',
+                    style: header2.copyWith(color: Colors.white70),
+                  ),
+                ],
+              ),
+              primaryVSpacer,
+              Container(
+                height: 250,
+                width: width,
+                child: Text(
+                  bio,
+                  style: sixteenDeepAssStyle.copyWith(color: Colors.white70),
+                ),
+              )
+            ],
+          ),
+        ));
   }
 
- Widget _profile( double screenWidth) {
+  Widget _profile( double screenWidth) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-      Text('Profile', style: header2.copyWith(color: white),),
-      Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
-        child: TextField(
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: ass,
-            contentPadding: EdgeInsets.all(24.0),
-            hintText: 'BimGraph',
-            hintStyle: sixteenWhiteStyle,
-            suffixIcon: const Icon(
-              Icons.menu,
-              color: white,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16.0),
+        Text('Profile', style: header2.copyWith(color: white),),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: TextField(
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: ass,
+              contentPadding: EdgeInsets.all(24.0),
+              hintText: 'BimGraph',
+              hintStyle: sixteenWhiteStyle,
+              suffixIcon: const Icon(
+                Icons.menu,
+                color: white,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16.0),
+              ),
             ),
           ),
         ),
-      ),
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
+        Padding(
+          padding: const EdgeInsets.only(bottom: 4.0),
+          child: Container(
             alignment: Alignment.bottomCenter,
-            height: 400,
-            width: screenWidth / 2.5,
+            height: 280,
+            width: screenWidth,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16.0),
                 color: buttonColor,
@@ -265,98 +261,88 @@ class _HomePadState extends State<HomePad> {
                     image: AssetImage(profilePic),
                     fit: BoxFit.cover)),
           ),
-          primaryHSpacer,
-          Expanded(
-            child: Column(
+        ),
+        CustomCard(
+          width: double.infinity,
+          cardColor: ass,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: 16.0, vertical: 24.0),
+            child: Row(
               mainAxisAlignment:
               MainAxisAlignment.spaceBetween,
               children: [
-                CustomCard(
-                  width: double.infinity,
-                  cardColor: ass,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 24.0),
-                    child: Row(
-                      mainAxisAlignment:
-                      MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Name:',
-                          style: fourteenWhiteStyle.copyWith(
-                              color: Colors.white70),
-                        ),
-                        const Text(
-                          'Kafiul Islam',
-                          style: sixteenWhiteStyle,
-                        ),
-                      ],
-                    ),
-                  ),
+                Text(
+                  'Name:',
+                  style: fourteenWhiteStyle.copyWith(
+                      color: Colors.white70),
                 ),
-                CustomCard(
-                  width: double.infinity,
-                  cardColor: ass,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 24.0),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment:
-                          MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Based in:',
-                              style:
-                              fourteenWhiteStyle.copyWith(
-                                  color: Colors.white70),
-                            ),
-                            const Text(
-                              'Bogura, Bangladesh',
-                              style: sixteenWhiteStyle,
-                            ),
-                          ],
-                        ),
-                        Image.asset(location),
-                      ],
-                    ),
-                  ),
-                ),
-                CustomCard(
-                  width: double.infinity,
-                  cardColor: ass,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 16.0),
-                    child: Row(
-                      mainAxisAlignment:
-                      MainAxisAlignment.spaceBetween,
-                      children: const [
-                        ProfileIcon(
-                          radius: 25,
-                          icon: FontAwesomeIcons.linkedin,
-                          color: Colors.blue,
-                        ),
-                        ProfileIcon(
-                            radius: 25,
-                            icon: FontAwesomeIcons.twitter),
-                        ProfileIcon(
-                            radius: 25,
-                            icon: FontAwesomeIcons.instagram),
-                        ProfileIcon(
-                            radius: 25,
-                            icon: FontAwesomeIcons.facebook),
-                      ],
-                    ),
-                  ),
+                const Text(
+                  'Kafiul Islam',
+                  style: sixteenWhiteStyle,
                 ),
               ],
             ),
-          )
-        ],
-      ),
-    ],);
- }
+          ),
+        ),
+        CustomCard(
+          width: double.infinity,
+          cardColor: ass,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: 16.0, vertical: 24.0),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment:
+                  MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Based in:',
+                      style:
+                      fourteenWhiteStyle.copyWith(
+                          color: Colors.white70),
+                    ),
+                    const Text(
+                      'Bogura, Bangladesh',
+                      style: sixteenWhiteStyle,
+                    ),
+                  ],
+                ),
+                Image.asset(location),
+              ],
+            ),
+          ),
+        ),
+        CustomCard(
+          width: double.infinity,
+          cardColor: ass,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: 16.0, vertical: 16.0),
+            child: Row(
+              mainAxisAlignment:
+              MainAxisAlignment.spaceBetween,
+              children: const [
+                ProfileIcon(
+                  radius: 25,
+                  icon: FontAwesomeIcons.linkedin,
+                  color: Colors.blue,
+                ),
+                ProfileIcon(
+                    radius: 25,
+                    icon: FontAwesomeIcons.twitter),
+                ProfileIcon(
+                    radius: 25,
+                    icon: FontAwesomeIcons.instagram),
+                ProfileIcon(
+                    radius: 25,
+                    icon: FontAwesomeIcons.facebook),
+              ],
+            ),
+          ),
+        ),
+      ],);
+  }
 
 }
