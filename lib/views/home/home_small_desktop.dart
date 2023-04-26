@@ -10,23 +10,24 @@ import '../../widgets/components/experience_card.dart';
 import '../../widgets/components/portfolio_card.dart';
 import '../../widgets/components/profile_icon.dart';
 
-class HomeWeb extends StatefulWidget {
+class HomeSmallDesktop extends StatefulWidget {
 
   final List<ExperienceCard> experienceList;
   final List<PortfolioCard> portfolioList;
 
-  const HomeWeb(
+  const HomeSmallDesktop(
       {Key? key, required this.experienceList, required this.portfolioList})
       : super(key: key);
 
   @override
-  State<HomeWeb> createState() => _HomeWebState();
+  State<HomeSmallDesktop> createState() => _HomeSmallDesktopState();
 }
 
-class _HomeWebState extends State<HomeWeb> {
+class _HomeSmallDesktopState extends State<HomeSmallDesktop> {
 
   @override
   Widget build(BuildContext context) {
+
     final double screenWidth = MediaQuery.of(context).size.width;
 
     return SingleChildScrollView(
@@ -75,7 +76,7 @@ class _HomeWebState extends State<HomeWeb> {
                         children: [
                           Container(
                             alignment: Alignment.bottomCenter,
-                            height: 400,
+                            height: 300,
                             width: screenWidth / 5,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(16.0),
@@ -94,10 +95,10 @@ class _HomeWebState extends State<HomeWeb> {
                                   cardColor: ass,
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 16.0, vertical: 24.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                        horizontal: 16.0, vertical: 16.0),
+                                    child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Text(
                                           'Name:',
@@ -120,51 +121,26 @@ class _HomeWebState extends State<HomeWeb> {
                                         horizontal: 16.0, vertical: 24.0),
                                     child: Column(
                                       children: [
-                                        Row(
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start  ,
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceEvenly,
                                           children: [
                                             Text(
                                               'Based in:',
                                               style:
-                                                  fourteenWhiteStyle.copyWith(
-                                                      color: Colors.white70),
+                                              fourteenWhiteStyle.copyWith(
+                                                  color: Colors.white70),
                                             ),
                                             const Text(
                                               'Bogura, Bangladesh',
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
                                               style: sixteenWhiteStyle,
                                             ),
                                           ],
                                         ),
-                                        Image.asset(location),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                CustomCard(
-                                  width: double.infinity,
-                                  cardColor: ass,
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 16.0, vertical: 16.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: const [
-                                        ProfileIcon(
-                                          radius: 25,
-                                          icon: FontAwesomeIcons.linkedin,
-                                          color: Colors.blue,
-                                        ),
-                                        ProfileIcon(
-                                            radius: 25,
-                                            icon: FontAwesomeIcons.twitter),
-                                        ProfileIcon(
-                                            radius: 25,
-                                            icon: FontAwesomeIcons.instagram),
-                                        ProfileIcon(
-                                            radius: 25,
-                                            icon: FontAwesomeIcons.facebook),
+                                        Image.asset(location, height: 140,),
                                       ],
                                     ),
                                   ),
@@ -173,7 +149,35 @@ class _HomeWebState extends State<HomeWeb> {
                             ),
                           )
                         ],
-                      )
+                      ),
+                      CustomCard(
+                        width: double.infinity,
+                        cardColor: ass,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 16.0),
+                          child: Row(
+                            mainAxisAlignment:
+                            MainAxisAlignment.spaceBetween,
+                            children: const [
+                              ProfileIcon(
+                                radius: 25,
+                                icon: FontAwesomeIcons.linkedin,
+                                color: Colors.blue,
+                              ),
+                              ProfileIcon(
+                                  radius: 25,
+                                  icon: FontAwesomeIcons.twitter),
+                              ProfileIcon(
+                                  radius: 25,
+                                  icon: FontAwesomeIcons.instagram),
+                              ProfileIcon(
+                                  radius: 25,
+                                  icon: FontAwesomeIcons.facebook),
+                            ],
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 )
@@ -240,7 +244,7 @@ class _HomeWebState extends State<HomeWeb> {
   Widget _experience(double width) {
     return Container(
       height: 220,
-      width: width / 2,
+      width: width / 1.8,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: widget.experienceList.length,
@@ -283,7 +287,7 @@ class _HomeWebState extends State<HomeWeb> {
                   scrollDirection: Axis.horizontal,
                   itemCount: widget.portfolioList.length,
                   separatorBuilder: (BuildContext context, int index) =>
-                      primaryHSpacer,
+                  primaryHSpacer,
                   itemBuilder: (BuildContext context, int index) {
                     return widget.portfolioList[index];
                   },
